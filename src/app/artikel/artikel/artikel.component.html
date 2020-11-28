@@ -1,0 +1,30 @@
+<div class="row d-flex justify-content-center p-2">
+    <div class="form-group">
+      <input class="form-control text-center" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#xF002; Search" style="width: 500px; font-family:Arial, FontAwesome">
+    </div>
+</div>
+
+
+<div *ngFor="let artikel of (artikels | async) | filter:searchText | paginate:{itemsPerPage: 9, currentPage:p}" class="card d-inline-flex m-3 noScrollbar" style="width: 30%; height: 50vh; overflow-y: scroll;">
+  <div class="card-header">
+    {{artikel.title}}
+  </div>
+  <div *ngIf="artikel.image; else elseBlock">
+    <figure><img src="{{artikel.image}}" class="card-img-top img-fluid" alt="..."></figure>
+    
+  </div>
+  <ng-template #elseBlock> 
+    <figure>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png" class="card-img-top img-fluid" alt="...">
+    </figure>
+    
+  </ng-template>
+  
+  <div class="card-body">
+    <p class="card-text">{{artikel.shortSummary}}</p>
+    <button type="button" class="btn btn-primary" (click)="showDetailArtikel(artikel)">Lees meer</button>
+  </div>
+</div>
+<div id="pagination">
+  <pagination-controls (pageChange)="p=$event"></pagination-controls>
+</div>    

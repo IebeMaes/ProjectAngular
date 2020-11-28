@@ -1,0 +1,69 @@
+<div *ngIf="chosenArtikel">
+    <div class="text-center">
+        <h1>{{chosenArtikel.title}}</h1>
+        <h3>{{chosenArtikel.subTitle}}</h3>
+        <div class="row">
+            <div class="col-lg-7 col-sm-12">
+                <p><b>{{chosenArtikel.shortSummary}}</b></p>
+                <p class="keepWhiteSpace">{{chosenArtikel.body}}</p>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <p>likes: {{chosenArtikel.likes}}</p>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary" [disabled]="clicked" (click)="like(); clicked =true;"><fa-icon [icon]="faThumbsUp" size="2x" class="text-center" style="color: white"></fa-icon>     Vind ik leuk</button>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-lg-5 col-sm-12">
+                <div *ngIf="chosenArtikel.image; else elseBlock">
+                    <figure><img src="{{chosenArtikel.image}}" class="card-img-top img-fluid" alt="..."></figure>
+                    
+                  </div>
+                  <ng-template #elseBlock> 
+                    <figure>
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png" class="card-img-top img-fluid" alt="...">
+                    </figure>
+                </ng-template>
+            </div>
+
+        </div>
+
+        <h2>Reacties</h2>
+        <div *ngIf="loggedInUser" class="row mt-5">
+            <div class="col-lg-6 col-sm-12" >
+                <h3>Laat hier uw reactie achter!</h3>
+                <form #reactieform="ngForm" (ngSubmit)="onSubmit()">
+                    <p>{{reactie | json}}</p>
+                    <div class="form-group">
+                        <label>Reactie</label>
+                        <input type="text" class="form-control" required name="body" [(ngModel)]="reactie.body">
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="!reactieform.form.valid ">Submit</button>
+                </form>
+            </div>
+            <div *ngIf="reacties" class="col-sm-12 col-lg-6">
+                <div *ngFor="let reactie of (reacties | async)">
+                    <div class="mb-2">
+                        <h4 class="mt-0"><b>{{reactie.user.firstName}}</b></h4>
+                        {{reactie.body}}
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!loggedInUser" class="row mt-5">
+            <div *ngIf="reacties" class="col-sm-12">
+                <div *ngFor="let reactie of (reacties | async)">
+                    <div class="mb-2">
+                        <h4 class="mt-0"><b>{{reactie.user.firstName}}</b></h4>
+                        {{reactie.body}}
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

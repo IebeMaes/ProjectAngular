@@ -1,0 +1,25 @@
+<div *ngIf="chosenArtikel && author">
+    <div class="text-center">
+        <h1>{{chosenArtikel.title}}</h1>
+        <h3>{{chosenArtikel.subTitle}}</h3>
+        <div class="row">
+            <div class="col-lg-7 col-sm-12">
+                <p><b>{{chosenArtikel.shortSummary}}</b></p>
+                <p class="keepWhiteSpace">{{chosenArtikel.body}}</p>
+            </div>
+            <div class="col-lg-5 col-sm-12">
+                <img class="img-fluid" src="{{chosenArtikel.image}}" alt="article">
+            </div>
+    
+        </div>
+        <div class="d-flex flex-row-reverse bd-highlight">
+            <div class="p-2 bd-highlight">Artikel geschreven door: {{author.lastName}} {{author.firstName}}</div>
+           
+          </div>
+        <div class="row mt-5">
+            <div class="col">
+                <button type="button" class="btn btn-warning btn-block" (click)="publiceer(chosenArtikel)" >Publiceren</button>
+            </div>
+        </div>
+    </div>
+</div>

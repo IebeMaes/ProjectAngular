@@ -1,0 +1,42 @@
+<h1 class="text-center">Overzicht journalisten</h1>
+<fa-icon [icon]="faSyncAlt" size="2x" class="text-center" style="color: seagreen" (click)="reload()"></fa-icon>
+<div>
+    <!-- <p *ngFor="let user of (users | async)">
+        {{user.firstName}}
+    </p> -->
+    <!-- <form>
+        <div class="form-group form-inline">
+            Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+        </div>
+      </form> -->
+      
+      <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+          <th scope="col">Voornaam</th>
+          <th scope="col">Achternaam</th>
+          <th scope="col">Email</th>
+          <th scope="col">Gebruikersnaam</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of (journalist | async); index as i">
+            <th scope="row">{{ i + 1 }}</th>
+          <td><ngb-highlight> {{user.firstName}}</ngb-highlight></td>
+          <td><ngb-highlight>{{user.lastName}}</ngb-highlight></td>
+          <td><ngb-highlight>{{user.email}}</ngb-highlight></td>
+          <td><ngb-highlight>{{user.username}}</ngb-highlight></td>
+          <td><button class="btn btn-danger" (click)=deleteUser(user.userID)>Delete {{user.userID}}</button></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <h2 class="text-center">Voeg een journalist toe!</h2>
+          <button type="button" class="btn btn-block btn-outline-success" (click)="goToevoegen()">Toevoegen</button>
+        </div>
+      </div>
+</div>

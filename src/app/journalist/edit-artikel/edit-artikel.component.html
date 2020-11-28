@@ -1,0 +1,57 @@
+<h1 class="text-center">Artikel bewerken</h1>
+
+
+<div *ngIf="artikel">
+    <form #newArtikelForm="ngForm">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Titel</label>
+                    <input type="text" class="form-control" name="title" [(ngModel)]="artikel.title">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Ondertitel</label>
+                    <input type="text" class="form-control" name="subTitle" [(ngModel)]="artikel.subTitle">
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-group" *ngIf="(tags | async)">
+                    <label for="">Categorie</label> <br>
+                    <div class="btn-group btn-group-toggle" ngbRadioGroup name="tagID" [(ngModel)]="artikel.tagID">
+                        <label ngbButtonLabel class="btn-primary" *ngFor="let tag of (tags |async)">
+                            <input ngbButton type="radio" [value]="tag.tagID"> {{tag.name}}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="image">Link naar foto</label>
+                        <input type="text" class="form-control" name="image" [(ngModel)]="artikel.image">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Korte samenvatting</label>
+            <textarea type="text" class="form-control" name="shortSummary" ng-trim="false"
+                [(ngModel)]="artikel.shortSummary"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Artikel</label>
+            <textarea type="text" class="form-control" name="body" [(ngModel)]="artikel.body" rows="25" ng-trim="false"></textarea>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-lg-6 col-sm-12">
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="!newArtikelForm.form.valid "
+                    (click)="onSubmit('save')">Opslaan en later verderwerken</button>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <button type="submit" class="btn btn-success btn-block" [disabled]="!newArtikelForm.form.valid "
+                    (click)="onSubmit('submit')">Opslaan en versturen naar admin voor publicatie</button>
+            </div>
+        </div>
+
+    </form>
+</div>

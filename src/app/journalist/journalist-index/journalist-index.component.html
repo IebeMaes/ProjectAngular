@@ -1,0 +1,45 @@
+<h1 class="text-center">Overzicht artikels!</h1>
+<div *ngIf="!(artikels | async)?.length" class="text-center"> 
+  <h2 class="text-center">Het lijkt erop dat u niet meer aan een artikel bezig bent, begin snel aan een nieuw!</h2>
+  <img src="https://i.imgflip.com/33wo0r.jpg" alt="nothing to see">
+</div>
+<div *ngIf="(artikels | async)?.length">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titel</th>
+        <th scope="col">Ondertitel</th>
+        <th scope="col">Korte Samenvatting</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let artikel of (artikels | async); index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{artikel.title}}
+        </td>
+        <td>
+          {{artikel.subTitle}}
+        </td>
+        <td>
+          {{artikel.shortSummary}}
+        </td>
+        <td>
+          {{artikel.articleStatus.name}}
+        </td>
+        <td><button class="btn btn-success" (click)="goEdit(artikel.articleID)">Edit</button> - <button class="btn btn-danger" (click)="Delete(artikel.articleID)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>
+<br>
+<div class="row justify-content-center">
+  <div class="col-5">
+    <h2 class="text-center">Begin een nieuw artikel</h2>
+    <button type="button" class="btn btn-block btn-outline-success" (click)="goToevoegen()" >Toevoegen</button>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<h1 class="text-center">Overzicht Tags</h1>
+
+<div class="row">
+    <div class="col-lg-6">
+        <fa-icon [icon]="faSyncAlt" size="2x" class="text-center" style="color: seagreen" (click)="reload()"></fa-icon>
+        <table class="table table-striped border" style="margin: 0 auto;">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Naam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tag of (tags | async); index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>
+                        <ngb-highlight> {{tag.name}}</ngb-highlight>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteTag(tag.tagID)">delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-6">
+        <h2 class="text-center">Voeg een tag toe!</h2>
+        <form #tagToevoegen="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>Naam</label>
+                <input type="text" class="form-control" name="name" [(ngModel)]="tag.name">
+            </div>
+            <button type="submit" class="btn btn-block btn-outline-success" [disabled]="!tagToevoegen.form.valid">Submit</button>
+        </form>
+        
+    </div>
+    
+</div>

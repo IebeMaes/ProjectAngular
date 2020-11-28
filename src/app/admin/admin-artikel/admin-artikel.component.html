@@ -1,0 +1,27 @@
+<div *ngFor="let artikel of (artikels | async)" class="card d-inline-flex m-3 noScrollbar" style="width: 30%;">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-10">
+        {{artikel.title}}
+      </div>
+      <div class="col-md-2 float-right">
+        <button class="btn btn-danger" (click)="clickMethod(artikel.title)">X</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="artikel.image; else elseBlock">
+    <figure><img src="{{artikel.image}}" class="card-img-top img-fluid" alt="..."></figure>
+    
+  </div>
+  <ng-template #elseBlock> 
+    <figure>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png" class="card-img-top img-fluid" alt="...">
+    </figure>
+    
+  </ng-template>
+  
+  <div class="card-body">
+    <p class="card-text">{{artikel.shortSummary}}</p>
+    <button type="button" class="btn btn-primary" (click)="showDetailArtikel(artikel)">Lees meer</button>
+  </div>
+</div>

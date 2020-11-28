@@ -1,0 +1,31 @@
+<h1 class="text-center">Haal het maximale uit uw krant!</h1>
+<h2 class="text-center">Door in te loggen kan u reacties achterlaten onder de artikels en kan u artikels liken!</h2>
+<br>
+
+<div class="row">
+    <div class="col-6 border-right">
+        <h2>Login</h2>
+        <form #userLoginform="ngForm" (ngSubmit)="onSubmit()">
+            <p>{{userLogin | json}}</p>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username</label>
+                <input type="text" class="form-control" required name="username" [(ngModel)]="userLogin.username">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="text" class="form-control" required name="password" [(ngModel)]="userLogin.password">
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!userLoginform.form.valid ">Submit</button>
+        </form>
+    </div>
+
+    <div class="col-6">
+        <div class="pt-5">
+            <h2 class="text-center">Nog geen account?</h2>
+            <button type="button" class="btn btn-primary btn-block" (click)="goSignup()">Maak een account!</button>
+        </div>
+    </div>
+</div>
+
+
