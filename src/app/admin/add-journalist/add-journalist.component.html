@@ -1,7 +1,7 @@
 <h1>Voeg een journalist toe!</h1>
 
 <form #journalistToevoegen="ngForm" (ngSubmit)="onSubmit()">
-    <p>{{user | json}}</p>
+
     <div class="form-group">
         <label for="exampleInputEmail1">Voornaam</label>
         <input type="text" class="form-control" name="username" [(ngModel)]="user.firstname">

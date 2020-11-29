@@ -37,7 +37,7 @@
             <div class="col-lg-6 col-sm-12" >
                 <h3>Laat hier uw reactie achter!</h3>
                 <form #reactieform="ngForm" (ngSubmit)="onSubmit()">
-                    <p>{{reactie | json}}</p>
+                
                     <div class="form-group">
                         <label>Reactie</label>
                         <input type="text" class="form-control" required name="body" [(ngModel)]="reactie.body">
