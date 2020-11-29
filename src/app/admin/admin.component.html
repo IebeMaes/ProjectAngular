@@ -1,42 +1,59 @@
 <h1 class="text-center">Welkom Admin!</h1>
 <div class="row">
-    <div class="col-4 col-sm-12 col-md-6 col-lg-4">
 
-        <div class="card bg-transparent" style="width: 18rem; border: black 5px solid" (click)="routeJournalist()">
-            <div class="card-header text-center">Journalisten bewerken</div>
-            <br>
-            <fa-icon [icon]="faUserCog" size="6x" class="text-center"></fa-icon>
-            <div class="card-body">
-                <h3 class="card-title text-center"></h3>
-                <p class="card-text">Hier heeft u de mogelijkheid om accounts aan te maken voor nieuwe journalisten.
-                    Alsook de accounts van bestaande journalisten verwijderen</p>
-            </div>
-        </div>
-
-
-    </div>
-    <div class="col-4 col-sm-12 col-md-6 col-lg-4" (click)="routeArtikels()">
-        <div class="card bg-transparent" style="width: 18rem; border: black 5px solid">
-            <div class="card-header text-center">Artikels publiceren</div>
-            <br>
-            <fa-icon [icon]="faNewspaper" size="6x" class="text-center"></fa-icon>
-            <div class="card-body">
+    <div class="col-4 col-sm-12 col-md-6 col-lg-4 changeColor">
+        <div class="card bg-transparent child" style="width: 18rem; border: black 5px solid" (click)="routeJournalist()">
+            <div class="card-header text-center child">Journalisten bewerken</div>
+            <div class="child" style="height: 20px;"></div>
+            <fa-icon [icon]="faUserCog" size="6x" class="text-center child"></fa-icon>
+            <div class="card-body child">
                 <h3 class="card-title text-center"></h3>
                 <p class="card-text">Hier heeft u de mogelijkheid om accounts aan te maken voor nieuwe journalisten.
                     Alsook de accounts van bestaande journalisten verwijderen</p>
             </div>
         </div>
     </div>
-    <div class="col-4 col-sm-12 col-md-6 col-lg-4" (click)="routeTags()">
-        <div class="card bg-transparent" style="width: 18rem; border: black 5px solid">
-            <div class="card-header text-center">Tags bewerken</div>
-            <br>
-            <fa-icon [icon]="faTags" size="6x" class="text-center"></fa-icon>
-            <div class="card-body">
+
+    <div class="col-4 col-sm-12 col-md-6 col-lg-4 changeColor" (click)="routeArtikels()">
+        <div class="card bg-transparent child" style="width: 18rem; border: black 5px solid">
+            <div class="card-header text-center child">Artikels publiceren</div>
+            <div class="child" style="height: 20px;"></div>
+            <fa-icon [icon]="faNewspaper" size="6x" class="text-center child"></fa-icon>
+            <div class="card-body child">
                 <h3 class="card-title text-center"></h3>
                 <p class="card-text">Hier heeft u de mogelijkheid om accounts aan te maken voor nieuwe journalisten.
                     Alsook de accounts van bestaande journalisten verwijderen</p>
             </div>
         </div>
     </div>
+
+    <div class="col-4 col-sm-12 col-md-6 col-lg-4 changeColor" (click)="routeTags()">
+        <div class="card bg-transparent child" style="width: 18rem; border: black 5px solid">
+            <div class="card-header text-center child">Tags bewerken</div>
+            <div class="child" style="height: 20px;"></div>
+            <fa-icon [icon]="faTags" size="6x" class="text-center child"></fa-icon>
+            <div class="card-body child">
+                <h3 class="card-title text-center"></h3>
+                <p class="card-text">Hier heeft u de mogelijkheid om accounts aan te maken voor nieuwe journalisten.
+                    Alsook de accounts van bestaande journalisten verwijderen</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row pt-5">
+
+    <div class="col-4 col-sm-12 col-md-6 col-lg-4 changeColor" (click)="routeArchief()">
+        <div class="card bg-transparent child" style="width: 18rem; border: black 5px solid">
+            <div class="card-header text-center child" >Archief bekijken</div>
+            <div class="child" style="height: 20px;"></div>
+            <fa-icon [icon]="faArchive" size="6x" class="text-center child"></fa-icon>
+            <div class="card-body child">
+                <h3 class="card-title text-center"></h3>
+                <p class="card-text">Hier heeft u de mogelijkheid om artikels te bijken die gearchiveerd zijn. U kan deze natuurlijk ook terug op de homepagina plaatsen.</p>
+            </div>
+        </div>
+    </div>
+
 </div>

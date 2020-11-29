@@ -12,10 +12,12 @@ import { UserService } from 'src/app/login/service/user.service';
   styleUrls: ['./admin-artikel-detail.component.scss']
 })
 export class AdminArtikelDetailComponent implements OnInit {
-
+  sub: any;
   chosenId: any;
   chosenArtikel: Artikel;
   author: User;
+  archive: any;
+
   constructor(private route: ActivatedRoute, private _artikelService: ArtikelService, private _userService: UserService, private router: Router) {
     if(localStorage.getItem("role") != "Admin"){
       this.router.navigate(['/'])
@@ -25,6 +27,9 @@ export class AdminArtikelDetailComponent implements OnInit {
     });
     console.log("de id van het gekozen artikel", this.chosenId);
 
+    this.sub = this.route
+      .data
+      .subscribe(v => this.archive = v.archief);
     //this.chosenArtikel = this._artikelService.getArtikel(this.chosenId);
 
     this._artikelService.getArtikel(this.chosenId).subscribe(
@@ -47,6 +52,13 @@ export class AdminArtikelDetailComponent implements OnInit {
     console.log("update van het artikel", gekozenArtikel);
     this._artikelService.updateArtikel(gekozenArtikel.articleID, gekozenArtikel).subscribe();
     this.router.navigate(['/admin/artikel'])
+  }
+
+  plaatsTerug(a: Artikel){
+    a.archive = false;
+    this._artikelService.updateArtikel(a.articleID, a).subscribe();
+    this.router.navigate(["/admin/archief"])
+
   }
 
 

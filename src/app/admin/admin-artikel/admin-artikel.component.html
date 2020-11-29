@@ -1,3 +1,6 @@
+<div class="text-center">
+<h1>{{title}}</h1>
+</div>
 <div *ngFor="let artikel of (artikels | async)" class="card d-inline-flex m-3 noScrollbar" style="width: 30%;">
   <div class="card-header">
     <div class="row">
@@ -5,7 +8,7 @@
         {{artikel.title}}
       </div>
       <div class="col-md-2 float-right">
-        <button class="btn btn-danger" (click)="clickMethod(artikel.title)">X</button>
+        <button class="btn btn-danger" (click)="clickMethod(artikel.title, artikel.articleID)">X</button>
       </div>
     </div>
   </div>
@@ -22,6 +25,7 @@
   
   <div class="card-body">
     <p class="card-text">{{artikel.shortSummary}}</p>
-    <button type="button" class="btn btn-primary" (click)="showDetailArtikel(artikel)">Lees meer</button>
+    <button *ngIf="!archive" type="button" class="btn btn-primary" (click)="showDetailArtikel(artikel)">Lees meer</button>
+    <button *ngIf="archive" type="button" class="btn btn-primary" (click)="showDetailArtikelArchief(artikel)">Lees meer</button>
   </div>
 </div>

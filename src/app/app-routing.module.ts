@@ -27,8 +27,10 @@ const routes: Routes = [
   {path: 'admin/journalist', component: JournalistComponent},
   {path: 'admin/addJournalist', component: AddJournalistComponent},
   {path: 'admin/tags', component: TagComponent},
-  {path: 'admin/artikel', component: AdminArtikelComponent},
-  {path: 'admin/artikel/:id', component: AdminArtikelDetailComponent},
+  {path: 'admin/artikel', component: AdminArtikelComponent, data: {archief: false}},
+  {path: 'admin/archief', component: AdminArtikelComponent, data: {archief: true}},
+  {path: 'admin/artikel/:id', component: AdminArtikelDetailComponent, data: {archief: false}},
+  {path: 'admin/archief/:id', component: AdminArtikelDetailComponent, data: {archief: true}},
   {path: 'journalist/index', component: JournalistIndexComponent},
   {path: 'journalist/artikel', component: NewArtikelComponent},
   {path: 'journalist/artikel/:id', component: EditArtikelComponent}

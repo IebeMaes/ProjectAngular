@@ -5,6 +5,8 @@ import { Tag } from 'src/app/admin/model/tag.model';
 import { Artikel } from '../models/artikel.model';
 import { ArtikelService} from '../services/artikel.service';
 import { map, filter } from 'rxjs/operators';
+import { faArchive } from '@fortawesome/free-solid-svg-icons';
+import { UserLoginService } from 'src/app/login/service/user-login.service';
 @Component({
   selector: 'app-artikel',
   templateUrl: './artikel.component.html',
@@ -17,9 +19,11 @@ export class ArtikelComponent implements OnInit{
   tags: Observable<Tag[]>;
   searchText;
   p;
+  admin: any;
+  loggedInUser: any;
   chosenArtikel: Artikel = null;
 
-  constructor(private _artikelService: ArtikelService, private route: ActivatedRoute, private router: Router) { 
+  constructor(private _artikelService: ArtikelService, private route: ActivatedRoute, private router: Router, private _userLoginService: UserLoginService) { 
     this.sub = this.route
       .data
       .subscribe(v => this.tagfilterr = v);
@@ -35,10 +39,16 @@ export class ArtikelComponent implements OnInit{
     else{
       this.artikels = this._artikelService.getArtikels().pipe(
         map(artikels => artikels.filter(
-          (artikel: Artikel) => artikel.tagID === this.tagfilterr.tagfilter && artikel.articleStatusID === 3
+          (artikel: Artikel) => artikel.tagID === this.tagfilterr.tagfilter && artikel.articleStatusID === 3 && artikel.archive == false
         ))
       );
     }
+    this._userLoginService.getUserLogins().subscribe((result) => {
+      this.loggedInUser = result[0];
+      if(this.loggedInUser.roleID ==3){
+        this.admin = true;
+      }
+    })
     
     
   }
@@ -51,6 +61,11 @@ export class ArtikelComponent implements OnInit{
   }
 
 
-  
+  archiveArtikel(artikel: Artikel){
+    artikel.archive = true;
+    this._artikelService.updateArtikel(artikel.articleID, artikel).subscribe(result => this.router.navigate([""]))
+  }
+
+  faArchive = faArchive;
 
 }

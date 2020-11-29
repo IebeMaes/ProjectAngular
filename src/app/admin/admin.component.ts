@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faCoffee, faUser, faUserCog, faNewspaper, faTags } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faUser, faUserCog, faNewspaper, faTags, faArchive } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -27,9 +27,13 @@ export class AdminComponent implements OnInit {
   routeTags(){
     this.router.navigate(["/admin/tags"])
   }
+  routeArchief(){
+    this.router.navigate(["/admin/archief"])
+  }
   faCoffee = faCoffee;
   faUser = faUser;
   faUserCog = faUserCog;
   faNewspaper = faNewspaper;
   faTags = faTags;
+  faArchive= faArchive;
 }

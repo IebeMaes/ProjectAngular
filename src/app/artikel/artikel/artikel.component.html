@@ -7,7 +7,14 @@
 
 <div *ngFor="let artikel of (artikels | async) | filter:searchText | paginate:{itemsPerPage: 9, currentPage:p}" class="card d-inline-flex m-3 noScrollbar" style="width: 30%; height: 50vh; overflow-y: scroll;">
   <div class="card-header">
-    {{artikel.title}}
+    <div class="row">
+      <div class="col-md-10">
+        {{artikel.title}}
+      </div>
+      <div *ngIf="admin" class="col-md-2 float-right">
+        <fa-icon [icon]="faArchive" size="2x" class="text-center" style="color: seagreen" (click)="archiveArtikel(artikel)"></fa-icon>
+      </div>
+    </div>
   </div>
   <div *ngIf="artikel.image; else elseBlock">
     <figure><img src="{{artikel.image}}" class="card-img-top img-fluid" alt="..."></figure>

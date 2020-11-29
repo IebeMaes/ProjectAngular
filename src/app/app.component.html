@@ -37,7 +37,11 @@
         <button ngbDropdownItem routerLink="/admin/tags" routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }">Tags beheren</button>
 
+        <button ngbDropdownItem routerLink="/admin/archief" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">Archief bekijken</button>
+
         <div class="dropdown-divider"></div>
+
         <button ngbDropdownItem (click)="logout()">Uitloggen</button>
       </div>
     </li>

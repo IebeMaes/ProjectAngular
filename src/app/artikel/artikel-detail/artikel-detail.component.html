@@ -7,12 +7,13 @@
                 <p><b>{{chosenArtikel.shortSummary}}</b></p>
                 <p class="keepWhiteSpace">{{chosenArtikel.body}}</p>
                 <hr>
-                <div class="row">
+                <div *ngIf="loggedInUser" class="row">
                     <div class="col">
-                        <p>likes: {{chosenArtikel.likes}}</p>
+                        <p>likes: {{likescount}}</p>
                     </div>
                     <div class="col">
-                        <button class="btn btn-primary" [disabled]="clicked" (click)="like(); clicked =true;"><fa-icon [icon]="faThumbsUp" size="2x" class="text-center" style="color: white"></fa-icon>     Vind ik leuk</button>
+                        <button *ngIf="!liked" class="btn btn-primary"  (click)="like()"><fa-icon [icon]="faThumbsUp" size="2x" class="text-center" style="color: white"></fa-icon>     Vind ik leuk</button>
+                        <button *ngIf="liked" class="btn btn-danger"  (click)="deleteLike()"><fa-icon [icon]="faThumbsDown" size="2x" class="text-center" style="color: white"></fa-icon>     Vind ik niet leuk</button>
                     </div>
                 </div>
                 
@@ -31,7 +32,7 @@
 
         </div>
 
-        <h2>Reacties</h2>
+        <h2 *ngIf="loggedInUser">Reacties</h2>
         <div *ngIf="loggedInUser" class="row mt-5">
             <div class="col-lg-6 col-sm-12" >
                 <h3>Laat hier uw reactie achter!</h3>

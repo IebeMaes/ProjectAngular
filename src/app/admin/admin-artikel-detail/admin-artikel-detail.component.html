@@ -18,8 +18,10 @@
           </div>
         <div class="row mt-5">
             <div class="col">
-                <button type="button" class="btn btn-warning btn-block" (click)="publiceer(chosenArtikel)" >Publiceren</button>
+                <button *ngIf="!archive" type="button" class="btn btn-warning btn-block" (click)="publiceer(chosenArtikel)" >Publiceren</button>
+                <button *ngIf="archive" type="button" class="btn btn-warning btn-block" (click)="publiceer(chosenArtikel)" >Publiceren</button>
+
             </div>
-        </div>
+        </div>  
     </div>
 </div>
