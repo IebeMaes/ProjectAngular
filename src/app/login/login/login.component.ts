@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {RoleService} from '../service/role.service';
 import {UserLoginService} from '../service/user-login.service';
 import { LoginUser } from '../model/login-user.model';
+import { AppComponent } from 'src/app/app.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +14,7 @@ import { LoginUser } from '../model/login-user.model';
 export class LoginComponent implements OnInit {
   userLogin: UserLogin = new UserLogin("", "");
   
-  constructor(private _authenticateService: AuthenticateService, private router:Router, private _roleService: RoleService, private _loginUserService: UserLoginService) { }
+  constructor(private _authenticateService: AuthenticateService, private router:Router, private _roleService: RoleService, private _loginUserService: UserLoginService, private appComponent: AppComponent) { }
 
   ngOnInit(): void {
   }
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("role", role);
       console.log("result", result);
       let loginUser = new LoginUser(result.email, result.username,result.token, result.roleID, result.userID);
-      this._loginUserService.addUserLogin(loginUser).subscribe()
+      this._loginUserService.addUserLogin(loginUser).subscribe(val => this.appComponent.ngOnInit())
 
       if(role == "User"){
         this.router.navigate(['/'])

@@ -23,6 +23,6 @@ export class AddJournalistComponent implements OnInit {
 
   onSubmit(){
     this._userService.addUser(this.user).subscribe()
-    this.router.navigate(['/admin/journalist'])
+    this.router.navigate(['/admin/journalist'], {queryParams: {refresh: true}})
   }
 }

@@ -8,6 +8,7 @@ import { JournalistComponent } from './journalist/journalist.component';
 import { AddJournalistComponent } from './add-journalist/add-journalist.component';
 import { AdminArtikelComponent } from './admin-artikel/admin-artikel.component';
 import { AdminArtikelDetailComponent } from './admin-artikel-detail/admin-artikel-detail.component';
+import { AppComponent } from '../app.component';
 @NgModule({
   declarations: [AdminComponent, TagComponent, JournalistComponent, AddJournalistComponent, AdminArtikelComponent, AdminArtikelDetailComponent],
   imports: [

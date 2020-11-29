@@ -51,13 +51,13 @@ export class AdminArtikelDetailComponent implements OnInit {
     gekozenArtikel.articleStatusID = 3;
     console.log("update van het artikel", gekozenArtikel);
     this._artikelService.updateArtikel(gekozenArtikel.articleID, gekozenArtikel).subscribe();
-    this.router.navigate(['/admin/artikel'])
+    this.router.navigate(['/admin/artikel'], {queryParams: {refresh: true}})
   }
 
   plaatsTerug(a: Artikel){
     a.archive = false;
     this._artikelService.updateArtikel(a.articleID, a).subscribe();
-    this.router.navigate(["/admin/archief"])
+    this.router.navigate(["/admin/archief"], {queryParams: {refresh: true}})
 
   }
 

@@ -39,13 +39,13 @@ export class EditArtikelComponent implements OnInit {
   onSubmit(buttontype: string) {
     if(buttontype ==="save"){
       this._artikelService.updateArtikel(this.artikel.articleID, this.artikel).subscribe()
-      this.router.navigate(['/journalist/index']);
+      this.router.navigate(['/journalist/index'], {queryParams: {refresh: true}});
     }
 
     if(buttontype ==="submit"){
       this.artikel.articleStatusID = 2;
       this._artikelService.updateArtikel(this.artikel.articleID, this.artikel).subscribe();
-      this.router.navigate(['/journalist/index']);
+      this.router.navigate(['/journalist/index'], {queryParams: {refresh: true}});
     }
   }
 

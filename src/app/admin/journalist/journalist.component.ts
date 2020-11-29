@@ -5,7 +5,7 @@ import { UserService } from 'src/app/login/service/user.service';
 import { FormControl } from '@angular/forms';
 import { map, filter } from 'rxjs/operators';
 import { pipe } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -15,13 +15,24 @@ import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 })
 export class JournalistComponent implements OnInit {
 
+  sub: any;
   users: Observable<User[]>;
   journalist;
-  constructor(private _userService: UserService, private router: Router) {
+  refresh: any;
+  constructor(private _userService: UserService, private router: Router, private route: ActivatedRoute) {
     if (localStorage.getItem("role") != "Admin") {
       this.router.navigate(['/'])
     }
+    
+    this.sub = this.route.queryParams.subscribe(params => {this.refresh = params['refresh']; console.log("test route", this.refresh)})
+    this.getData();
 
+    if(this.refresh){
+      this.getData();
+    }
+  }
+
+  getData(){
     this.users = this._userService.getUsers();
 
     this.journalist = this.users.pipe(
@@ -39,12 +50,8 @@ export class JournalistComponent implements OnInit {
   }
   
   deleteUser(userID){
-    this._userService.deleteUser(userID).subscribe()
-    location.reload();
-  }
-
-  reload(){
-    location.reload();
+    this._userService.deleteUser(userID).subscribe(value => this.getData())
+    
   }
   faSyncAlt = faSyncAlt;
 }
