@@ -6,7 +6,8 @@ import { ArtikelService } from 'src/app/artikel/services/artikel.service';
 import { map, filter } from 'rxjs/operators';
 import { User } from 'src/app/login/model/user.model';
 import { LoginUser } from 'src/app/login/model/login-user.model';
-import { UserLoginService } from '../../login/service/user-login.service'
+import { UserLoginService } from '../../login/service/user-login.service';
+import { faArrowDown} from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-journalist-index',
   templateUrl: './journalist-index.component.html',
@@ -45,6 +46,7 @@ export class JournalistIndexComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getData();
   }
 
   goToevoegen() {
@@ -57,5 +59,7 @@ export class JournalistIndexComponent implements OnInit {
     this._artikelService.deleteArtikel(id).subscribe(val => this.getData())
     
   }
+
+  faArrowDown = faArrowDown;
 
 }

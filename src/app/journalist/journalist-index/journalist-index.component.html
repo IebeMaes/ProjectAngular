@@ -1,9 +1,9 @@
 <h1 class="text-center">Overzicht artikels!</h1>
-<div *ngIf="!(artikels | async)" class="text-center"> 
+<div *ngIf="!(artikels | async)?.length" class="text-center"> 
   <h2 class="text-center">Het lijkt erop dat u niet meer aan een artikel bezig bent, begin snel aan een nieuw!</h2>
-  <img src="https://i.imgflip.com/33wo0r.jpg" alt="nothing to see">
+  <fa-icon [icon]="faArrowDown" size="6x" class="text-center child"></fa-icon>
 </div>
-<div *ngIf="(artikels | async)">
+<div *ngIf="(artikels | async)?.length">
   <table class="table table-striped">
     <thead>
       <tr>
